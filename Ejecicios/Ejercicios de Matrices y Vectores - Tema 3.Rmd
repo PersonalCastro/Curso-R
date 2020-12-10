@@ -1,0 +1,36 @@
+---
+title: "Ejercicios de Vectores y Matrices - Tema 3"
+author: "PersonalCastro"
+date: "12/11/2020"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+> ## Ejercicio 1 (Vectores)
+### **Construye un vector con los nombres de los planetas del sistema solar**
+```{r}
+x = c("Mercurio", "Venus", "la Tierra", "Marte", "Júpiter","Saturno", "Urano", "Neptuno", "Plutón")
+```
+
+> ## Ejercicio 2 (Vectores)
+### **Lee los nombres de las posiciones 1, 2, 3 y 4.**
+```{r}
+x[1:4]
+```
+
+
+> ## Ejercicio 3 (Vectores)
+### **Lee los nómbres de las posiciones  1, 4 y 6**
+```{r}
+x[c(1,4,6)]
+```
+
+> ## Ejercicio 1 (Matrices)
+### **Crear una matriz con los primeros 12 numeros, y extraelos elementos [1,1] y [2,2]**
+```{r}
+m = matrix(1:12, nrow = 3, byrow = TRUE)
+c(m[1,1],m[2,2])
+```
+

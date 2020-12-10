@@ -1,0 +1,125 @@
+---
+title: "Ejercicios de gráficos"
+author: "PersonalCastro"
+date: "24/11/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+> ## Ejercicio 1 (Gráficos)
+### **Utilizando los datos de los pisos de una determinada zona de España, realiza al menos dos gráficos. Cámbiale el color y el nombre de las leyendas.**
+&nbsp;
+&nbsp;
+&nbsp;
+```{r fig.align="center"}
+# Datos de los pisos de una determinada zona de España
+precio = c(250,130,165,310,320,400,200,80,69,179,120,223,300,198,165,69,723,123,356,183)
+superficie = c(120,80,100,180,190,250,99,90,60,100,110,120,180,130,90,50,60,70,120,130)
+antiguedad = c(15,20,30,15,12,40,30,27,14,20,22,25,21,33,5,12,6,10,28,30)
+datos_pisos = data.frame(Precio = precio, Superficie = superficie, Antiguedad = antiguedad)
+datos_pisos
+```
+
+\pagebreak
+#### - Nube de puntos:
+####
+```{r fig.align="center"}
+plot(datos_pisos$Antiguedad,
+     datos_pisos$Superficie,
+     pch=1,col="red",
+     xlab="Antiguedad",
+     ylab="Superficie",
+     main="Superficie por antiguedad")
+```
+
+\pagebreak
+#### - Gráfico de líneas:
+####
+```{r}
+sort_precios = datos_pisos[order(datos_pisos$Antiguedad),]
+plot(sort_precios$Antiguedad,
+     sort_precios$Precio,
+     type="overplotted",
+     pch=1,col="blue",
+     xlab="Antiguedad",
+     ylab="Precio",
+     main="Precio por antiguedad (ordenado)")
+
+```
+
+\pagebreak
+#### - Histograma:
+####
+```{r}
+hist(datos_pisos$Antiguedad,
+     col="lightblue",
+     main="Agrupacion de pisos por antiguedad",
+     xlab="Antiguedad",
+     ylab="Cantidad",
+     breaks = seq(from=0,to=40,by=5),
+     border="red")
+```
+
+\pagebreak
+#### - Diagrama de secotres:
+####
+```{r}
+pie(datos_pisos$Superficie,
+    labels = datos_pisos$Precio,
+    col = c("blue2",
+            "darkgreen",
+            "lightskyblue1",
+            "cyan",
+            "gray21",
+            "green",
+            "maroon3",
+            "antiquewhite1",
+            "orangered2",
+            "palevioletred3",
+            "mediumpurple3",
+            "sienna2",
+            "lightcyan4",
+            "snow2",
+            "turquoise1",
+            "chartreuse",
+            "seashell",
+            "yellow",
+            "tan1",
+            "slateblue1"),
+    main="Superficies por precio")
+```
+
+\pagebreak
+#### - Gráfico de barras:
+####
+```{r}
+grafico = barplot(datos_pisos$Antiguedad,
+                  ylim=c(0,50),
+                  xlab="Antiguedad",
+                  ylab="Precios",
+                  col="green",
+                  border="orange",
+                  main="Antiguedad y desviación típica",
+                  names.arg=datos_pisos$Precio)
+sds = sd(datos_pisos$Antiguedad)
+arrows(grafico,
+       datos_pisos$Antiguedad-sds,
+       grafico,
+       datos_pisos$Antiguedad+sds,
+       angle=90,
+       code=3,
+       length = 0.05)
+```
+
+\pagebreak
+#### - Gráfico de cajas y bigotes:
+####
+```{r}
+boxplot(datos_pisos$Superficie,datos_pisos$Precio,main="Superficie y Precio",col = c("lightpink","lightgreen"))
+```
+

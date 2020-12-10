@@ -1,0 +1,57 @@
+---
+title: "Ejercicios Data Frames y Manipulación de Datos"
+author: "PersonalCastro"
+date: "16/11/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+> ## Ejercicio 1 (Data Frames)
+### **Transforma en un data frame la matriz creada anteriormente, e introduce los una columna de números**
+```{r}
+M = matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, byrow = TRUE)
+M
+dataM = data.frame(M)
+dataM
+vector = c(0,0,0)
+vector
+dataM = data.frame(dataM,vector)
+dataM
+```
+
+> ## Ejercicio 1 (Manipulación de Datos)
+### **Crea un data frame siguiendo los pasos que puedes encontrar en el libro Data Frames, y:**
+```{r}
+dataFrame = data.frame(Enteros = 1:3, Numeros = c("uno","dos","tres"), Decimales = c(1.1,2.2,3.3))
+dataFrame
+```
+- Selecciona una variable con el comando subset()
+```{r}
+subset(dataFrame, Enteros >= 2, select = c(Numeros, Decimales))
+numero1 = subset(dataFrame, Numeros == "dos", select = Enteros)
+numero2 = subset(dataFrame, Decimales > 3, select = Enteros)
+c(numero1,numero2)
+```
+- Usa al menos 2 operadores aritméticos con las variables seleccionadas en el apartado anterior
+```{r}
+c(
+  numero1 + numero2,
+  sqrt(numero1) * numero2,
+  numero1 %/% numero2
+  )
+```
+- Usa algún operador lógico, y comenta su resultado
+```{r}
+c(
+  numero1 == numero2, #False
+  numero1 < numero2,  #True
+  numero1 > numero2   #False
+  )
+```
+
+
